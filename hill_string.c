@@ -3,10 +3,10 @@
 #include<string.h>
 #include<time.h>
 
-void generate_random_solution(char* stringInput, int i); // gera novas soluÁıes
-int evaluate(char* stringInput, char* goal); // avalia a soluÁ„o quanto menor o valor, melhor È a soluÁ„o (atÈ 0)
-int check_if_valid_string(char* stringInput); // aceita apenas strings com letras e espaÁos
-void mutate(char* stringInput); // FunÁ„o para variar uma soluÁ„o
+void generate_random_solution(char* stringInput, int i); // gera novas solu√ß√µes
+int evaluate(char* stringInput, char* goal); // avalia a solu√ß√£o quanto menor o valor, melhor √© a solu√ß√£o (at√© 0)
+int check_if_valid_string(char* stringInput); // aceita apenas strings com letras e espa√ßos
+void mutate(char* stringInput); // Fun√ß√£o para variar uma solu√ß√£o
 
 int main()
 {
@@ -25,21 +25,21 @@ int main()
         getchar();
     }while(!check_if_valid_string(string_input));
 
-    generate_random_solution(best, strlen(string_input));// inicializaÁ„o com uma soluÁ„o
+    generate_random_solution(best, strlen(string_input));// inicializa√ß√£o com uma solu√ß√£o
 
     int best_score = evaluate( best, string_input), new_score;
 
     do {
         printf("\n----- Best score so far: %i ----- Best Solution: %s ------------ \n", best_score, best);
 
-        if( !best_score ) // Teste se encontrou soluÁ„o
+        if( !best_score ) // Teste se encontrou solu√ß√£o
             break;
 
         strcpy(new_solution, best);
         mutate(new_solution);
 
-        new_score = evaluate(new_solution, string_input);
-
+        new_score = evaluate(new_solution, string_input); //cria uma nova solu√ß√£o e verifica se est√° √© melhor que
+                                                         // a melhor encontrada at√© ent√£o
         if ( new_score < best_score) {
             strcpy( best, new_solution );
             best_score = new_score;
@@ -64,9 +64,9 @@ int evaluate(char* stringInput, char* goal) //Avalia o fitness com a distancia d
     }
     return dist;
 }
-void generate_random_solution(char* stringInput, int i) //gera uma soluÁ„o aleatoria
+void generate_random_solution(char* stringInput, int i) //gera uma solu√ß√£o aleatoria
 {
-    char alphabet[] = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // alfabeto para gerar soluÁıes
+    char alphabet[] = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // alfabeto para gerar solu√ß√µes
     char* p;
     p = stringInput;
     while(i){
@@ -91,7 +91,7 @@ int check_if_valid_string(char* inputString)
     return 1;
 }
 
-void mutate(char* stringInput) //  FunÁ„o para variar uma soluÁ„o
+void mutate(char* stringInput) //  Fun√ß√£o para variar uma solu√ß√£o
 {
     char alphabet[] = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     int i = rand()%strlen(stringInput);
